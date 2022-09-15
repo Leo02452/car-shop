@@ -11,4 +11,10 @@ export default class CarController {
 
     res.status(201).json(createdCar);
   }
+
+  public async list(req: Request, res: Response) {
+    const cars = await this._carService.list();
+
+    res.json(cars);
+  }
 }
