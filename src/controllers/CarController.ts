@@ -29,4 +29,10 @@ export default class CarController {
 
     res.json(updatedCar);
   }
+
+  public async delete(req: Request, res: Response) {
+    await this._carService.delete(req.params.id);
+
+    res.sendStatus(204);
+  }
 }

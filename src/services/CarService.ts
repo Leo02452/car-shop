@@ -43,7 +43,15 @@ export default class CarService {
     if (!updated) {
       throw new Error(ErrorTypes.EntityNotFound);
     }
-    
+
     return updated;
+  }
+
+  public async delete(id: string): Promise<void> {
+    const car = await this._car.delete(id);
+
+    if (!car) {
+      throw new Error(ErrorTypes.EntityNotFound);
+    }
   }
 }
