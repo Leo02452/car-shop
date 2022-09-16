@@ -33,4 +33,15 @@ describe('Car Model', () => {
       expect(result).to.be.deep.equal([createdCar]);
     });
   });
+
+  describe('list one', () => {
+    it('should return a car if bd returns a car', async () => {
+      sinon
+        .stub(Model, 'findOne')
+        .resolves(createdCar);
+      
+      const result = await carModel.readOne(carId._id);
+      expect(result).to.be.deep.equal(createdCar);
+    });
+  });
 });
