@@ -17,4 +17,10 @@ export default class MotorcycleController {
 
     res.json(motorcycles);
   }
+
+  public async getById(req: Request, res: Response) {
+    const motorcycle = await this._motorcycleService.getById(req.params.id);
+
+    res.json(motorcycle);
+  }
 }
