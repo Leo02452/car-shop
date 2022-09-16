@@ -1,6 +1,6 @@
 import { model as mongooseCreateModel, Schema } from 'mongoose';
-import MongoModel from './MongoModel';
 import { ICar } from '../interfaces/ICar';
+import VehicleModel from './VehicleModel';
 
 const carMongooseSchema = new Schema<ICar>({
   status: Boolean,
@@ -12,8 +12,8 @@ const carMongooseSchema = new Schema<ICar>({
   seatsQty: Number,
 }, { versionKey: false });
 
-export default class Car extends MongoModel<ICar> {
-  constructor(model = mongooseCreateModel('Car', carMongooseSchema)) {
+export default class CarModel extends VehicleModel<ICar> {
+  constructor(model = mongooseCreateModel('CarModel', carMongooseSchema)) {
     super(model);
   }
 }

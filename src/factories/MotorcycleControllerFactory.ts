@@ -1,10 +1,10 @@
 import MotorcycleController from '../controllers/MotorcycleController';
-import Motorcycle from '../models/Motorcycle';
+import MotorcycleModel from '../models/MotorcycleModel';
 import MotorcycleService from '../services/MotorcycleService';
 
 export default class MotorcycleControllerFactory {
   static make() {
-    const model = new Motorcycle();
+    const model = new MotorcycleModel();
     const service = new MotorcycleService(model);
     const controller = new MotorcycleController(service);
 

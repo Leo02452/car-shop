@@ -2,7 +2,7 @@ import { isValidObjectId, Model, UpdateQuery } from 'mongoose';
 import { ErrorTypes } from '../errors/catalog';
 import { IModel } from '../interfaces/IModel';
 
-abstract class MongoModel<T> implements IModel<T> {
+abstract class VehicleModel<T> implements IModel<T> {
   protected _model: Model<T>;
 
   constructor(model: Model<T>) {
@@ -44,4 +44,4 @@ abstract class MongoModel<T> implements IModel<T> {
   }
 }
 
-export default MongoModel;
+export default VehicleModel;
