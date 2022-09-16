@@ -11,4 +11,10 @@ export default class MotorcycleController {
 
     res.status(201).json(createdMotorcycle);
   }
+
+  public async list(req: Request, res: Response) {
+    const motorcycles = await this._motorcycleService.list();
+
+    res.json(motorcycles);
+  }
 }
