@@ -4,6 +4,7 @@ import CarModel from '../../../models/CarModel';
 import { Model } from 'mongoose';
 import {
   carBody,
+  cardToUpdate,
   carId,
   createdCar,
 } from '../../mocks/carMocks';
@@ -43,6 +44,17 @@ describe('Car Model', () => {
       
       const result = await carModel.readOne(carId._id);
       expect(result).to.be.deep.equal(createdCar);
+    });
+  });
+
+  describe('update', () => {
+    it('should return an updated car if bd returns an updated car', async () => {
+      sinon
+        .stub(Model, 'findByIdAndUpdate')
+        .resolves({ ...carId, ...cardToUpdate });
+      
+      const result = await carModel.update(carId._id, cardToUpdate);
+      expect(result).to.be.deep.equal({ ...carId, ...cardToUpdate });
     });
   });
 });
