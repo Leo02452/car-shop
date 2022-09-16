@@ -9,6 +9,7 @@ import {
   cardToUpdate,
   carId,
   createdCar,
+  deletedCar
 } from '../../mocks/carMocks';
 
 describe('Car Controller', () => {
@@ -80,4 +81,16 @@ describe('Car Controller', () => {
       expect(jsonStub.calledWith({ ...carId, ...cardToUpdate })).to.be.true;
     })
   })
+
+  describe('delete', () => {
+    it('should return a 204 http status', async () => {
+      sinon.stub(carService, 'delete').resolves();
+      res.sendStatus = sinon.stub().returns(res);
+
+      req.params = { id: carId._id };
+      await carController.delete(req, res);
+
+      expect((res.sendStatus as sinon.SinonStub).calledWith(204)).to.be.true;
+    });
+  });
 });
