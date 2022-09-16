@@ -23,4 +23,10 @@ export default class MotorcycleController {
 
     res.json(motorcycle);
   }
+
+  public async update(req: Request, res: Response) {
+    const updatedMotorcycle = await this._motorcycleService.update(req.params.id, req.body);
+
+    res.json(updatedMotorcycle);
+  }
 }
