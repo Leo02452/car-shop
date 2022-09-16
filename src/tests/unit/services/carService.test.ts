@@ -8,7 +8,11 @@ import {
   cardToUpdate,
   carId,
   createdCar,
+  deletedCar
 } from '../../mocks/carMocks';
+import chaiAsPromised from 'chai-as-promised';
+
+use(chaiAsPromised);
 
 describe('Car Service', () => {
   const carModel = new CarModel();
@@ -57,6 +61,16 @@ describe('Car Service', () => {
       
       const result = await carService.update(carId._id, cardToUpdate);
       expect(result).to.be.deep.equal({ ...carId, ...cardToUpdate });
+    });
+  });
+
+  describe('delete', () => {
+    it('should return a deleted car if model return a deleted car', async () => {
+      sinon
+        .stub(carModel, 'delete')
+        .resolves(deletedCar);
+      
+      return expect(carService.delete(carId._id)).to.eventually.be.undefined;
     });
   });
 });
