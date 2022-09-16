@@ -29,4 +29,10 @@ export default class MotorcycleController {
 
     res.json(updatedMotorcycle);
   }
+
+  public async delete(req: Request, res: Response) {
+    await this._motorcycleService.delete(req.params.id);
+
+    res.sendStatus(204);
+  }
 }
