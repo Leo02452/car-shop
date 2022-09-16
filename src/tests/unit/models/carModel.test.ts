@@ -23,4 +23,14 @@ describe('Car Model', () => {
     });
   });
 
+  describe('read', () => {
+    it('should return a list of cars if bd returns a list of cars', async () => {
+      sinon
+        .stub(Model, 'find')
+        .resolves([createdCar]);
+      
+      const result = await carModel.read();
+      expect(result).to.be.deep.equal([createdCar]);
+    });
+  });
 });
