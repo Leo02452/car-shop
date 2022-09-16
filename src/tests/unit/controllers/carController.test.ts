@@ -6,6 +6,7 @@ import CarService from '../../../services/CarService';
 import CarController from '../../../controllers/CarController';
 import {
   carBody,
+  cardToUpdate,
   carId,
   createdCar,
 } from '../../mocks/carMocks';
@@ -62,4 +63,21 @@ describe('Car Controller', () => {
       expect((res.json as sinon.SinonStub).calledWith(createdCar)).to.be.true;
     });
   });
+
+  describe('update', () => {
+    it('should return a 200 http status and an updated car', async () => {
+      sinon.stub(carService, 'update').resolves({ ...carId, ...cardToUpdate });
+
+      req.params = { id: carId._id };
+      req.body = cardToUpdate;
+
+      await carController.update(req, res);
+
+      const statusStub = res.status as Sinon.SinonStub;
+      const jsonStub = res.json as Sinon.SinonStub;
+
+      expect(statusStub.calledWith(200)).to.be.true;
+      expect(jsonStub.calledWith({ ...carId, ...cardToUpdate })).to.be.true;
+    })
+  })
 });
