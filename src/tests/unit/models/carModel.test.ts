@@ -7,6 +7,7 @@ import {
   cardToUpdate,
   carId,
   createdCar,
+  deletedCar
 } from '../../mocks/carMocks';
 
 describe('Car Model', () => {
@@ -55,6 +56,17 @@ describe('Car Model', () => {
       
       const result = await carModel.update(carId._id, cardToUpdate);
       expect(result).to.be.deep.equal({ ...carId, ...cardToUpdate });
+    });
+  });
+
+  describe('delete', () => {
+    it('should return a deleted car if bd return a deleted car', async () => {
+      sinon
+        .stub(Model, 'findByIdAndDelete')
+        .resolves(deletedCar);
+      
+      const result = await carModel.delete(carId._id);
+      expect(result).to.be.deep.equal(deletedCar);
     });
   });
 });
