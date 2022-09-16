@@ -6,6 +6,7 @@ import CarService from '../../../services/CarService';
 import CarController from '../../../controllers/CarController';
 import {
   carBody,
+  carId,
   createdCar,
 } from '../../mocks/carMocks';
 
@@ -47,6 +48,18 @@ describe('Car Controller', () => {
 
       expect((res.status as sinon.SinonStub).calledWith(200)).to.be.true;
       expect((res.json as sinon.SinonStub).calledWith([createdCar])).to.be.true;
+    });
+  });
+
+  describe('get by id', () => {
+    it('should return a 200 http status and a car', async () => {
+      sinon.stub(carService, 'getById').resolves(createdCar);
+
+      req.params = { id: carId._id };
+      await carController.getById(req, res);
+
+      expect((res.status as sinon.SinonStub).calledWith(200)).to.be.true;
+      expect((res.json as sinon.SinonStub).calledWith(createdCar)).to.be.true;
     });
   });
 });
