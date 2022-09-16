@@ -38,4 +38,15 @@ describe('Car Controller', () => {
       expect(jsonStub.calledWith(createdCar)).to.be.true;
     });
   });
+
+  describe('list', () => {
+    it('should return a 200 http status and a list of cars', async () => {
+      sinon.stub(carService, 'list').resolves([createdCar]);
+
+      await carController.list(req, res);
+
+      expect((res.status as sinon.SinonStub).calledWith(200)).to.be.true;
+      expect((res.json as sinon.SinonStub).calledWith([createdCar])).to.be.true;
+    });
+  });
 });
