@@ -25,4 +25,14 @@ describe('Car Service', () => {
     });
   });
 
+  describe('list', () => {
+    it('should return a list of cars if model returns a list of cars', async () => {
+      sinon
+        .stub(carModel, 'read')
+        .resolves([createdCar]);
+      
+      const result = await carService.list();
+      expect(result).to.be.deep.equal([createdCar]);
+    });
+  });
 });
