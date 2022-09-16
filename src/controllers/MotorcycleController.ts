@@ -15,19 +15,19 @@ export default class MotorcycleController {
   public async list(req: Request, res: Response) {
     const motorcycles = await this._motorcycleService.list();
 
-    res.json(motorcycles);
+    res.status(200).json(motorcycles);
   }
 
   public async getById(req: Request, res: Response) {
     const motorcycle = await this._motorcycleService.getById(req.params.id);
 
-    res.json(motorcycle);
+    res.status(200).json(motorcycle);
   }
 
   public async update(req: Request, res: Response) {
     const updatedMotorcycle = await this._motorcycleService.update(req.params.id, req.body);
 
-    res.json(updatedMotorcycle);
+    res.status(200).json(updatedMotorcycle);
   }
 
   public async delete(req: Request, res: Response) {

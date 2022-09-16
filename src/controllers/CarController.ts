@@ -15,19 +15,19 @@ export default class CarController {
   public async list(req: Request, res: Response) {
     const cars = await this._carService.list();
 
-    res.json(cars);
+    res.status(200).json(cars);
   }
 
   public async getById(req: Request, res: Response) {
     const car = await this._carService.getById(req.params.id);
 
-    res.json(car);
+    res.status(200).json(car);
   }
 
   public async update(req: Request, res: Response) {
     const updatedCar = await this._carService.update(req.params.id, req.body);
 
-    res.json(updatedCar);
+    res.status(200).json(updatedCar);
   }
 
   public async delete(req: Request, res: Response) {
