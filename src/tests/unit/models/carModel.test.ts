@@ -4,6 +4,7 @@ import CarModel from '../../../models/CarModel';
 import { Model } from 'mongoose';
 import {
   carBody,
+  carId,
   createdCar,
 } from '../../mocks/carMocks';
 

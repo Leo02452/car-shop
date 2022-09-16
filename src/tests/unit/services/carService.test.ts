@@ -5,6 +5,7 @@ import { Model } from 'mongoose';
 import CarService from '../../../services/CarService';
 import {
   carBody,
+  carId,
   createdCar,
 } from '../../mocks/carMocks';
 
@@ -33,6 +34,17 @@ describe('Car Service', () => {
       
       const result = await carService.list();
       expect(result).to.be.deep.equal([createdCar]);
+    });
+  });
+
+  describe('get by id', () => {
+    it('should return a car if model returns a car', async () => {
+      sinon
+        .stub(carModel, 'readOne')
+        .resolves(createdCar);
+      
+      const result = await carService.getById(carId._id);
+      expect(result).to.be.deep.equal(createdCar);
     });
   });
 });
